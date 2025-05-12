@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - page</title>
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center ;
+            background-color: indigo;
+        }
+        #login-box {
+            width: 95%;
+            max-width: 750px;
+            display: flex;
+            align-items: center;
+
+            div#login-image{
+                width: 50%;
+                height: 100%;
+            }
+            div#login-form{
+                width: 50%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body >
+    <div id="login-box" class=" bg-white rounded-2 shadow p-1 ">
+        <div id="login-image" class="">
+            <img src="/assets/img/bg-7.jpg" class="object-fit-cover w-100 h-100" alt="">
+        </div>
+        <div id="login-form" class="">
+            <h1 class="h4 text-center text-dark fw-bold mb-4">Selamat datang kembali.</h1>
+            <form action="" method="post" class="p-4">
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" name="username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+                <button class="btn btn-primary bg-gradient w-100 ">Masuk <i class="fa fa-arrow-circle-right"></i></button>
+                <div class="text-center mt-3">
+                    <a href="#" class="">Lupa password?</a>
+                </div>
+            </form>
+    </div>
+</body>
+</html>

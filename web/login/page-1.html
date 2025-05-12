@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Page</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    <style>
+        body {
+            background: url("/assets/img/bg-1.jpg") no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #login-box {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div id="login-box" class=" mx-md-auto mx-1">
+        <h1 class="h4 text-white fw-bold mb-4">Selamat datang kembali.</h1>
+        <form action="" method="post" class="pt-3">
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="input-group mb-4">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button class="btn btn-primary bg-gradient w-100 ">Masuk <i class="fa fa-arrow-circle-right"></i></button>
+            <div class="text-center mt-3">
+                <a href="#" class="text-white">Lupa password?</a>
+            </div>
+
+        </form>
+
+    </div>
 </body>
+
 </html>

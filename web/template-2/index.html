@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - template</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/template-2.css">
+</head>
+
+<body>
+    <main class="d-flex vh-100 w-100">
+        <div id="sidebar" class="px-3 mb-3">
+            <div id="sidebar-header" class="d-flex align-items-center  text-white gap-2">
+                <i class="fa-solid fa-square-envelope fs-2"></i>
+                <span class="fs-5">Template</span>
+            </div>
+            <div id="sidebar-menu" class="d-flex flex-column gap-2">
+                <a href="#"
+                    class="d-flex px-3 py-2 align-items-center text-decoration-none text-white rounded-3 active">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="ms-2">Dashboard</span>
+                </a>
+                <a href="#" class="d-flex px-3 py-2 align-items-center text-decoration-none text-white rounded-3 ">
+                    <i class="fa-solid fa-table"></i>
+                    <span class="ms-2">List data</span>
+                </a>
+                <a href="#" class="d-flex px-3 py-2 align-items-center text-decoration-none text-white rounded-3 ">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    <span class="ms-2">Agenda</span>
+                </a>
+                <a href="#" class="d-flex px-3 py-2 align-items-center text-decoration-none text-white rounded-3 ">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="ms-2">Data pengguna</span>
+                </a>
+
+            </div>
+        </div>
+        <div id="main-content">
+            <div id="header" class="container-fluid bg-white shadow-sm d-flex align-items-center">
+                <div class="icons d-flex align-content-center gap-1 ms-auto">
+                    <a href="#" class="btn"><i class="fa-solid fa-bell"></i></a>
+                    <a href="#" class="btn"><i class="fa-solid fa-gear"></i></a>
+                    <button class="btn border fw-bold"><span>J</span>oko <span>K</span>ristianto</button>
+                </div>
+            </div>
+            <div id="content" class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center my-4">
+                    <div>
+                        <h2 class="mb-1">Dashboard</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>                
+            </div>
+            <!-- total rekap -->
+            <div class="container-fluid my-4">
+                <div class="row g-3">
+                    <div class="col-12 col-md-4">
+                        <div class="card text-center h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-users fa-2x mb-2 text-primary"></i>
+                                <h5 class="card-title mb-1">Jumlah Member</h5>
+                                <p class="card-text fs-4 fw-bold mb-0">1,250</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card text-center h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-cart-shopping fa-2x mb-2 text-success"></i>
+                                <h5 class="card-title mb-1">Total Penjualan</h5>
+                                <p class="card-text fs-4 fw-bold mb-0">Rp 150.000.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card text-center h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-coins fa-2x mb-2 text-warning"></i>
+                                <h5 class="card-title mb-1">Total Profit</h5>
+                                <p class="card-text fs-4 fw-bold mb-0">Rp 45.000.000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end total rekap -->
+            <!-- Grafik Penjualan -->
+            <div class="container-fluid my-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title mb-0">Grafik Penjualan</h5>
+                            <div>
+                                <button class="btn btn-outline-primary btn-sm me-1" onclick="updateChartRange('6')">6 Bulan</button>
+                                <button class="btn btn-outline-primary btn-sm me-1" onclick="updateChartRange('12')">12 Bulan</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="updateChartRange('all')">Semua</button>
+                            </div>
+                        </div>
+                        <canvas id="salesChart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            
+            <!-- Chart.js CDN -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const allLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+                const allData = [12000000, 15000000, 13000000, 17000000, 16000000, 18000000, 20000000, 21000000, 19000000, 22000000, 23000000, 25000000];
+
+                let currentRange = '12';
+
+                function getChartData(range) {
+                    if (range === '6') {
+                        return {
+                            labels: allLabels.slice(-6),
+                            data: allData.slice(-6)
+                        };
+                    } else if (range === '12') {
+                        return {
+                            labels: allLabels,
+                            data: allData
+                        };
+                    } else {
+                        // 'all' fallback, same as 12 for now
+                        return {
+                            labels: allLabels,
+                            data: allData
+                        };
+                    }
+                }
+
+                const ctx = document.getElementById('salesChart').getContext('2d');
+                const chartData = getChartData(currentRange);
+                const salesChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: chartData.labels,
+                        datasets: [{
+                            label: 'Penjualan (Rp)',
+                            data: chartData.data,
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                            tension: 0.3,
+                            fill: true,
+                            pointRadius: 4,
+                            pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                            pointBorderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'Rp ' + value.toLocaleString('id-ID');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                function updateChartRange(range) {
+                    currentRange = range;
+                    const newData = getChartData(range);
+                    salesChart.data.labels = newData.labels;
+                    salesChart.data.datasets[0].data = newData.data;
+                    salesChart.update();
+                }
+            </script>
+        </div>
+    </main>
+</body>
+
+</html>
